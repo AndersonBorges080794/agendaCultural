@@ -11,23 +11,27 @@
 
           <%- include('includes/messages') %>
 
-          <form action="/contato/register" method="POST">
+          <% if(contato._id) { %>
+          <form action="/contato/edit/<%= contato._id %>" method="POST">
+          <% }else{ %>
+          <form action="/contato/register" method="POST"> 
+          <% } %>  
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="form-group">
               <label>Evento</label>
-              <input type="text" class="form-control" name="evento" value=" <%= contato.evento %>">
+              <input type="text" class="form-control" name="evento" value="<%= contato.evento %>">
             </div>
             <div class="form-group">
               <label>Endereço</label>
-              <input type="text" class="form-control" name="endereco" value=" <%= contato.endereco %>">
+              <input type="text" class="form-control" name="endereco" value="<%= contato.endereco %>">
             </div>
             <div class="form-group">
               <label>Data</label>
-              <input type="text" class="form-control" name="data" value=" <%= contato.data %>">
+              <input type="text" class="form-control" name="data" value="<%= contato.data %>">
             </div>
             <div class="form-group">
               <label>Hora</label>
-              <input type="text" class="form-control" name="hora" value=" <%= contato.hora %>">
+              <input type="text" class="form-control" name="hora" value="<%= contato.hora %>">
             </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>

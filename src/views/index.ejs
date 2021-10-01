@@ -11,29 +11,24 @@
 
           <%- include('includes/messages') %>
 
+          <% if(contatos.length > 0) { %>
           <div class="responsive-table">
             <table class="table my-3">
-              <tr>
-                <td>Anderson</td>
-                <td>Borges</td>
-                <td>7136783099</td>
-                <td>teste@teste.com</td>
-              </tr>
-              <tr>
-                <td>Anderson</td>
-                <td>Borges</td>
-                <td>7136783099</td>
-                <td>teste@teste.com</td>
-              </tr>
-              <tr>
-                <td>Anderson</td>
-                <td>Borges</td>
-                <td>7136783099</td>
-                <td>teste@teste.com</td>
-              </tr>
+              <% contatos.forEach(contato => { %>
+                <tr>
+                  <td><%= contato.evento %></td>
+                  <td><%= contato.endereco %></td>
+                  <td><%= contato.data %></td>
+                  <td><%= contato.hora %></td>
+                  <td><a class="btn btn-primary" href="/contato/index/<%= contato._id %>">Editar</a></td>
+                  <td><a class="btn btn-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+                </tr>
+                <% }); %>
             </table>
           </div>
-
+          <% } else { %>
+              <p class="text-dark text-center lead">Não existem eventos na sua VAW - Agenda Cultural</p>
+          <% } %>
         </div>
         
         <div class="col-lg-2"></div>
